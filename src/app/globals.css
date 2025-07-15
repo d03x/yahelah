@@ -68,12 +68,12 @@
   /* Setting Sidebar & LAYOUT */
   --sidebar-height: calc(100vh - var(--navbar-height));
   --layout-grid: var(--sidebar-width) calc(100% - var(--sidebar-width));
-  --navbar-height:var(--navbar-height);
+  --navbar-height: var(--navbar-height);
 }
 
 :root {
   --navbar-height: 50px;
-  --sidebar-width: 220px;
+  --sidebar-width: 250px;
   --radius: 0.65rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);

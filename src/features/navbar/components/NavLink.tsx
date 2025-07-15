@@ -1,4 +1,3 @@
-import { LinkProps } from "@/components/ui/link";
 import Link from "next/link";
 import { FunctionComponent, ReactNode, SVGProps } from "react";
 
@@ -11,7 +10,7 @@ export default function NavLink({
   children: ReactNode;
   href: string;
   icon?: FunctionComponent<SVGProps<SVGSVGElement>>;
-  props?: LinkProps;
+  props?: never;
 }) {
   return (
     <Link
@@ -20,7 +19,7 @@ export default function NavLink({
       {...props}
     >
       {Icon && <Icon className="w-5 mr-2  h-5 aspect-square" />}
-      <span>{children}</span>
+      <span className="text-text">{children}</span>
     </Link>
   );
 }

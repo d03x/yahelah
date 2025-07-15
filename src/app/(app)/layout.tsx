@@ -14,7 +14,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
             <Sidebar />
           </ErrorBoundaryProvider>
           <ErrorBoundaryProvider>
-            <main className="px-10">{children}</main>
+            <main>{children}</main>
           </ErrorBoundaryProvider>
         </div>
       </div>

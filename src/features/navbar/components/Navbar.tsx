@@ -1,19 +1,8 @@
 "use client";
-import { Avatar, Button } from "@/components";
 import { cn } from "@/lib/utils";
-import {
-  IconDateTime,
-  IconHamburger,
-  IconPencilBox,
-  IconPencilBoxFill,
-  IconPerson,
-  IconRefresh,
-  IconSearch,
-  IconUpload,
-} from "@intentui/icons";
+
 import { NavRight } from "./NavRight";
 import Link from "next/link";
-import NavLink from "./NavLink";
 
 const Navbar = () => {
   return (
@@ -25,17 +14,7 @@ const Navbar = () => {
             YAALEAH
           </Link>
         </div>
-        <div className="ml-9 flex items-center">
-          <NavLink href="?fresh" icon={IconRefresh}>
-            Fresh
-          </NavLink>
-          <NavLink href="?fresh" icon={IconPerson}>
-            Untuk Kamu
-          </NavLink>
-          <NavLink href="?fresh" icon={IconUpload}>
-            Lagi Viral
-          </NavLink>
-        </div>
+       
         <div className="ml-auto">
           <div className="flex gap-3 items-center">
             <NavRight />

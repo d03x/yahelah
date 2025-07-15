@@ -7,6 +7,7 @@ import {
   IconHome3,
   IconPeople,
   IconPerson,
+  IconShuffle,
 } from "@intentui/icons";
 const Sidebar = () => {
   return (
@@ -18,6 +19,9 @@ const Sidebar = () => {
       <NavLink href={"/home"} icon={IconHome3}>
         Home
       </NavLink>
+      <NavLink href={"/home"} icon={IconShuffle}>
+        Random
+      </NavLink>
       <NavLink href={"/topik"} icon={IconPeople}>
         Topik
       </NavLink>
@@ -25,7 +29,7 @@ const Sidebar = () => {
         Notifikasi
       </NavLink>
       <NavLink href={"/trending"} icon={IconChartAnalytics}>
-        Trending
+        Trending Topik
       </NavLink>
       <NavLink href={"/a"} icon={IconPerson}>
         Akun Saya
