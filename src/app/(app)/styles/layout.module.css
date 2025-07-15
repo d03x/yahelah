@@ -1,0 +1,7 @@
+.layout{
+    min-height: 100vh;
+    border: 1px solid;
+    grid-template-rows: max-content;
+    display: grid;
+    grid-template-columns: 120px max-content;
+}

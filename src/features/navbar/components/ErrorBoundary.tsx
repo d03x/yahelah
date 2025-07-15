@@ -1,0 +1,5 @@
+const ErrorBoundary = ()=>{}
+
+export {
+    ErrorBoundary
+}
