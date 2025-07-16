@@ -1,8 +1,13 @@
-import { Navbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
 import ErrorBoundaryProvider from "@/provider/ErrorBoundaryProvider";
 import { ReactNode } from "react";
-const AppLayout = ({ children }: { children: ReactNode }) => {
+const AppLayout = ({
+  children,
+  modal,
+}: {
+  children: ReactNode;
+  modal: ReactNode;
+}) => {
   return (
     <div>
       <div className="2xl:container mx-auto">
@@ -12,6 +17,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
           </ErrorBoundaryProvider>
           <ErrorBoundaryProvider>
             <main>{children}</main>
+            {modal}
           </ErrorBoundaryProvider>
         </div>
       </div>

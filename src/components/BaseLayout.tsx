@@ -3,7 +3,7 @@ export function Content({ children }: { children: ReactNode }) {
   return <div className="content">{children}</div>;
 }
 export function Aside({ children }: { children: ReactNode }) {
-  return <div className="aside">{children}</div>;
+  return <div className="hidden lg:block">{children}</div>;
 }
 export function Root({
   children,
@@ -14,7 +14,9 @@ export function Root({
 }) {
   if (withAside) {
     return (
-      <div className="grid grid-cols-[1fr_var(--aside-width)]">{children}</div>
+      <div className="lg:grid lg:grid-cols-[1fr_var(--aside-width)]">
+        {children}
+      </div>
     );
   }
   return <div className="grid grid-cols-1">{children}</div>;
