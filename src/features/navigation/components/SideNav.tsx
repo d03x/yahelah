@@ -1,5 +1,5 @@
 import NavLink from "@/features/navbar/components/NavLink";
-import { IconBell, IconCompass, IconHome3, IconInbox, IconLogin, IconPeople, IconSettings } from "@intentui/icons";
+import { Icon4K, IconBell, IconCompass, IconHome3, IconInbox, IconLogin, IconPeople, IconSettings } from "@intentui/icons";
 
 export default function SideNav() {
   return (
@@ -31,7 +31,7 @@ export default function SideNav() {
         >
           Pengaturan
         </NavLink>
-        <NavLink className="rounded-l-2xl" href={"/a"} icon={IconSettings}>
+        <NavLink className="rounded-l-2xl" href={"/a"} icon={Icon4K}>
           Theme
         </NavLink>
       </div>

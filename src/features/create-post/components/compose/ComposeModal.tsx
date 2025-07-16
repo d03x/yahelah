@@ -9,12 +9,10 @@ const Header = ({ children }: { children?: ReactNode }) => {
       <div className="flex items-center gap-2">
         <div className="h-8 w-8 bg-gray-500 rounded-sm"></div>
         <div className="flex flex-col">
-          <span className="font-semibold">
-            Dadan Hidayat
-          </span>
+          <span className="font-semibold">Dadan Hidayat</span>
           <div className="text-xs flex items-center gap-1">
-            <IconGlobe/>
-           <span>Public</span>
+            <IconGlobe />
+            <span>Public</span>
           </div>
         </div>
       </div>
@@ -47,9 +45,7 @@ const Footer = ({ children }: { children?: ReactNode }) => {
 };
 const Body = ({ children }: { children: ReactNode }) => {
   return (
-    <div
-      className="p-2 overflow-auto max-h-[300px] min-h-[200px]"
-    >
+    <div className="p-2 overflow-auto max-h-[300px] min-h-[200px]">
       {children}
     </div>
   );

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Geist,Belgrano,Gabarito, Geist_Mono } from "next/font/google";
+import { Geist,Gabarito, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TRPCProvider } from "@/trpc";
-import ErrorBoundaryProvider from "@/provider/ErrorBoundaryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,7 +9,8 @@ const geistSans = Geist({
 });
 const gabarito = Gabarito({
   weight: "400",
-  variable : "--font-gabarito"
+  variable : "--font-gabarito",
+  subsets : ['latin-ext']
 })
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
