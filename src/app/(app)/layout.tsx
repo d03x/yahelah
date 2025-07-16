@@ -6,7 +6,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div>
       <div className="2xl:container mx-auto">
-        <div className="grid min-h-screen grid-cols-(--layout-grid)">
+        <div className="sm:grid min-h-screen sm:grid-cols-(--layout-grid)">
           <ErrorBoundaryProvider>
             <Sidebar />
           </ErrorBoundaryProvider>

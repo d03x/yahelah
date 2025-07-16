@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${gabarito.variable} ${geistMono.variable} font-gabarito antialiased`}
+        className={`${geistSans.variable} ${gabarito.variable} ${geistMono.variable} font-base antialiased`}
       >
         <TRPCProvider>
             {children}
