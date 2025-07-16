@@ -10,7 +10,7 @@ export const Root = (props: ComponentChildren) => {
   return (
     <div
       className={cn(
-        "h-(--navbar-height) sticky top-0  border-b border-border flex items-center"
+        "h-(--navbar-height) bg-navbar sticky top-0  border-b border-border flex items-center"
       )}
     >
       {props.children}

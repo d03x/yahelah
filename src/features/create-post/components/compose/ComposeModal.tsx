@@ -1,18 +1,21 @@
 import "client-only";
-import { IconSettings } from "@intentui/icons";
-import { ReactNode } from "react";
+import { IconGlobe, IconSettings } from "@intentui/icons";
+import { ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 const Header = ({ children }: { children?: ReactNode }) => {
   return (
-    <header className="flex items-center justify-between px-4 py-3 border-b">
-      <div className="flex items-start gap-2">
-        <div className="h-8 w-8 bg-gray-500 rounded-full"></div>
+    <header className="flex items-center justify-between px-2 lg:px-4 py-3 border-b">
+      <div className="flex items-center gap-2">
+        <div className="h-8 w-8 bg-gray-500 rounded-sm"></div>
         <div className="flex flex-col">
-          <span className="font-semibold text-muted-foreground">
+          <span className="font-semibold">
             Dadan Hidayat
           </span>
-          <span className="text-xs">Public</span>
+          <div className="text-xs flex items-center gap-1">
+            <IconGlobe/>
+           <span>Public</span>
+          </div>
         </div>
       </div>
       <IconSettings className="w-6 h-6" />
@@ -32,7 +35,7 @@ const Footer = ({ children }: { children?: ReactNode }) => {
     <footer className="mt-auto flex py-3 px-3 border-t">
       <button
         onClick={back}
-        className="bg-muted text-muted-foreground font-semibold px-8 py-2 rounded-full text-sm cursor-pointer"
+        className="bg-muted font-semibold px-8 py-2 rounded-full text-sm cursor-pointer"
       >
         BACK
       </button>
@@ -45,7 +48,6 @@ const Footer = ({ children }: { children?: ReactNode }) => {
 const Body = ({ children }: { children: ReactNode }) => {
   return (
     <div
-      contentEditable
       className="p-2 overflow-auto max-h-[300px] min-h-[200px]"
     >
       {children}
@@ -53,10 +55,24 @@ const Body = ({ children }: { children: ReactNode }) => {
   );
 };
 const Root = ({ children }: { children: ReactNode }) => {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const isModalRoute = pathname?.startsWith("/new/");
+    if (isModalRoute) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [pathname]);
+
   return createPortal(
-    <div className="w-full  bg-secondary/65 h-full fixed inset-0">
-      <div className="p-5 max-w-xl mx-auto w-full h-full z-50 fixed inset-0">
-        <div className="bg-white flex-col flex border border-border w-full rounded-lg overflow-hidden">
+    <div className="w-full bg-overlay/15 backdrop-blur-md h-full fixed inset-0">
+      <div className="lg:p-5 max-w-xl mx-auto w-full h-full z-50 fixed inset-0">
+        <div className=" bg-popover flex-col text-popover-foreground flex border border-border w-full lg:rounded-lg overflow-hidden">
           {children}
         </div>
       </div>
