@@ -8,8 +8,8 @@ import { VideoIcon } from "../assets/icon/VideoIcon";
 
 export default function CreatePost() {
   return (
-    <div className="p-2">
-      <div className="bg-muted px-3 py-2 flex items-center rounded-lg">
+    <div className="lg:p-2 py-2">
+      <div className="bg-content-panel border-content-panel-border shadow-[var(--content-panel-shadow)] border px-3 py-2 flex items-center lg:rounded-lg">
         <Link
           href={"/new/text"}
           className="cursor-pointer text-muted-fg text-sm leading-5 group flex-1 flex items-center justify-center flex-col"

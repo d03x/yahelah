@@ -1,12 +1,36 @@
 @import "tailwindcss";
 @plugin "tailwindcss-react-aria-components";
 @import "tw-animate-css";
-@import "../styles/colors.css";
+/* @import "../styles/colors.css"; */
 @custom-variant dark (&:is(.dark *));
 :root {
+  --verified: rgba(1, 124, 32, 1);
+  /* POst */
+  --content-panel: rgb(255, 255, 255);
+  --content-panel-border: rgb(213, 213, 213);
+  --content-panel-shadow: 0px 0px 12px 0 rgba(0, 0, 0, 0.04);
+  --content-tint: rgba(0, 25, 53, 0.05);
+  --content-tint-strong: rgba(0, 25, 53, 0.1);
+  --content-tint-heavy: rgba(0, 25, 53, 0.15);
+  --content-mobile-container: rgba(242, 244, 245, 1);
+  --content-fg: rgba(51, 71, 93, 1);
+  --content-fg-secondary: rgba(102, 117, 134, 1);
+  --content-fg-tertiary: rgba(153, 163, 174, 1);
+  --content-education: rgba(176, 157, 255, 1);
+  --content-blue: rgb(0, 136, 244);
+  --content-purple: rgba(176, 157, 255, 1);
+  --content-pink: rgba(255, 160, 226, 1);
+  --content-red: rgba(255, 146, 131, 1);
+  --content-orange: rgba(255, 185, 102, 1);
+  --content-yellow: rgba(241, 231, 137, 1);
+  --content-green: rgba(103, 226, 134, 1);
+
   --navbar-height: 50px;
   --sidebar-width: 370px;
   --aside-width: 390px;
+  --background: rgba(250, 250, 250);
+  --modal: rgba(255, 255, 255, 1);
+  --modal-border: rgba(0, 25, 53, 0.1);
   --radius: 0.65rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
@@ -51,7 +75,7 @@
   --warning-fg: oklch(0.279 0.077 45.635);
   --danger: oklch(0.577 0.245 27.325);
   --danger-fg: oklch(0.971 0.013 17.38);
-  --navbar: oklch(0.967 0.001 286.375);
+  --navbar: white;
   --navbar-fg: oklch(0.141 0.005 285.823);
   --sidebar-fg: oklch(0.141 0.005 285.823);
   --radius-lg: 0.5rem;
@@ -62,10 +86,39 @@
   --radius-2xl: calc(var(--radius-lg) * 1.5);
   --radius-3xl: calc(var(--radius-lg) * 2);
   --radius-4xl: calc(var(--radius-lg) * 3);
+
+  --hovered-background: rgba(0, 0, 0, 0.04);
+  --pressed-background: rgba(0, 0, 0, 0.06);
+  --elevated-background: rgb(255, 255, 255);
+  --primary-column-outline: rgb(213, 213, 213);
+  --elevated-tertiary-background: rgb(255, 255, 255);
 }
 .dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
+  --primary-column-outline: rgb(45, 45, 45);
+  --elevated-tertiary-background: rgb(38, 38, 38);
+  /* modal */
+  --modal: rgba(26, 26, 26, 1);
+  --modal-border: rgba(38, 38, 38, 1);
+  /* POst */
+  --content-panel: rgb(24, 24, 24);
+  --content-panel-border: rgb(45, 45, 45);
+  --content-tint: rgba(255, 255, 255, 0.05);
+  --content-tint-strong: rgba(255, 255, 255, 0.1);
+  --content-tint-heavy: rgba(255, 255, 255, 0.15);
+  --content-mobile-container: rgba(13, 13, 13, 1);
+  --content-fg: rgba(255, 255, 255, 1);
+  --content-fg-secondary: rgba(153, 153, 153, 1);
+  --content-fg-tertiary: var(--color-secondary-text);
+  --content-education: rgba(176, 157, 255, 1);
+  --content-blue: rgb(0, 136, 244);
+  --content-purple: rgba(176, 157, 255, 1);
+  --content-pink: rgba(255, 160, 226, 1);
+  --content-red: rgba(255, 146, 131, 1);
+  --content-orange: rgba(255, 185, 102, 1);
+  --content-yellow: rgba(241, 231, 137, 1);
+  --content-green: rgba(103, 226, 134, 1);
+  --background: rgb(0, 0, 0);
+  --foreground: #f3f5f7;
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
@@ -80,6 +133,9 @@
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(0.27 0.013 285.805);
+
+  --secondary-text: rgb(119, 119, 119);
+
   --input: oklch(0.32 0.013 285.805);
   --ring: oklch(0.546 0.245 262.881);
   --chart-1: oklch(0.488 0.243 264.376);
@@ -112,8 +168,46 @@
   --navbar: oklch(0.17 0.006 285.885);
   --navbar-fg: oklch(0.985 0 0);
   --sidebar-fg: oklch(0.985 0 0);
+  --hovered-background: rgba(255, 255, 255, 0.04);
+  --pressed-background: rgba(0, 0, 0, 0.06);
+  --elevated-background: rgb(24, 24, 24);
 }
 @theme inline {
+  --color-primary-column-outline: var(--primary-column-outline);
+  --color-elevated-tertiary-background: var(--elevated-tertiary-background);
+  --color-elevated-background: var(--elevated-background);
+  --color-hovered-background: var(--hovered-background);
+  --color-pressed-background: var(--pressed-background);
+
+  --color-secondary-text: var(--secondary-text);
+
+  --color-verified: var(--verified);
+
+  /* modal */
+  --color-modal-border: var(--modal-border);
+  --color-modal: var(--modal);
+
+  /* Body COlor */
+  --color-body: var(--body-color);
+  --color-content-panel: var(--content-panel);
+  --color-content-panel-border: var(--content-panel-border);
+  --color-content-tint: var(--content-panel-tint);
+  --color-content-tint-strong: var(--content-panel-strong);
+  --color-content-tint-heavy: rgba(0, 25, 53, 0.15);
+  --color-content-mobile-container: var(--content-panel);
+  --color-content-fg: var(--content-fg);
+  --color-content-fg-secondary: var(--content-fg-secondary);
+  --color-content-fg-tertiary: var(--content-fg-tertiary);
+  --color-content-education: var(--content-red);
+  --color-content-blue: var(--content-blue);
+  --color-content-purple: var(--content-red);
+  --color-content-pink: var(--content-pink);
+  --color-content-red: var(--content-red);
+  --color-content-orange: var(--content-orange);
+  --color-content-yellow: var(--content-yellow);
+  --color-content-green: var(--color-content-green);
+  --shadow-panel-content: var(--content-panel-shadow);
+  --font-inter: var(--font-inter);
   --font-gabarito: var(--font-gabarito);
   /* Setting Sidebar & LAYOUT */
   --sidebar-height: 100vh;
@@ -177,6 +271,8 @@
   --radius-3xl: var(--radius-3xl);
   --radius-2xl: var(--radius-2xl);
   --radius-xs: var(--radius-xs);
+  --text-name: 14px;
+  --text-nickname: 12px;
 }
 
 @layer base {

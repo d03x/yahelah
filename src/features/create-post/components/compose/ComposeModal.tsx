@@ -1,11 +1,11 @@
 import "client-only";
-import { IconGlobe, IconSettings } from "@intentui/icons";
+import { IconGlobe, IconSettings, IconVideoCam } from "@intentui/icons";
 import { ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { usePathname, useRouter } from "next/navigation";
 const Header = ({ children }: { children?: ReactNode }) => {
   return (
-    <header className="flex items-center justify-between px-2 lg:px-4 py-3 border-b">
+    <header className="flex border-modal-border items-center justify-between px-2 lg:px-4 py-2 border-b">
       <div className="flex items-center gap-2">
         <div className="h-8 w-8 bg-gray-500 rounded-sm"></div>
         <div className="flex flex-col">
@@ -30,7 +30,7 @@ const Footer = ({ children }: { children?: ReactNode }) => {
   }
 
   return (
-    <footer className="mt-auto flex py-3 px-3 border-t">
+    <footer className="mt-auto flex py-3 px-3 border-modal-border border-t">
       <button
         onClick={back}
         className="bg-muted font-semibold px-8 py-2 rounded-full text-sm cursor-pointer"
@@ -45,9 +45,7 @@ const Footer = ({ children }: { children?: ReactNode }) => {
 };
 const Body = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="p-2 overflow-auto max-h-[300px] min-h-[200px]">
-      {children}
-    </div>
+    <div className="overflow-auto max-h-[300px] min-h-[200px]">{children}</div>
   );
 };
 const Root = ({ children }: { children: ReactNode }) => {
@@ -66,9 +64,9 @@ const Root = ({ children }: { children: ReactNode }) => {
   }, [pathname]);
 
   return createPortal(
-    <div className="w-full bg-overlay/15 backdrop-blur-md h-full fixed inset-0">
+    <div role="modal" className="w-full bg-[#000000cc]  h-full fixed inset-0">
       <div className="lg:p-5 max-w-xl mx-auto w-full h-full z-50 fixed inset-0">
-        <div className=" bg-popover flex-col text-popover-foreground flex border border-border w-full lg:rounded-lg overflow-hidden">
+        <div className="bg-modal flex-col text-popover-foreground flex border border-modal-border w-full lg:rounded-lg overflow-hidden">
           {children}
         </div>
       </div>
