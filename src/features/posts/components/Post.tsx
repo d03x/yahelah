@@ -30,6 +30,9 @@ export const Post = () => {
         <div className="text-sm prose">
           <p>{faker.word.words(Math.random() * 100)}</p>
         </div>
+        <PostBase.PostTypeAudio
+          audioUrl="http://192.168.65.92:3000/wiwok-detok.mp3"
+        />
       </PostBase.Body>
       <PostBase.Footer>
         <PostBase.Action

@@ -13,6 +13,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { AudioPlayer } from "../player/AudioPlayer";
 type WithChildren = {
   children: ReactNode;
 };
@@ -78,7 +79,15 @@ const Header = (props: HeaderProps) => {
 const Body = (props: WithChildren) => {
   return <div className="px-3  ml-11">{props.children}</div>;
 };
-
+const PostAudio = ({audioUrl}:{audioUrl:string}) => {
+  return (
+    <div className="mt-2">
+      <AudioPlayer 
+        url={audioUrl}
+      />
+    </div>
+  );
+};
 const Action = ({
   count,
   onClick,
@@ -127,10 +136,9 @@ const Root = (props: WithChildren) => {
   );
 };
 
-
-
 Post.Header = Header;
 Post.Footer = Footer;
 Post.Body = Body;
 Post.Action = Action;
+Post.PostTypeAudio = PostAudio;
 export { Post };

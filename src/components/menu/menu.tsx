@@ -1,4 +1,4 @@
-"use client";
+import "client-only";
 import { AnimatePresence } from "motion/react";
 import React, {
   ComponentType,
@@ -185,7 +185,7 @@ const Body = ({ children }: { children: ReactNode }) => {
         </motion.div>
       )}
     </AnimatePresence>,
-    document.body
+    window.document.body
   );
 };
 const MenuSeparator = () => {
