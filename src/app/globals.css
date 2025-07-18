@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @plugin "tailwindcss-react-aria-components";
 @import "tw-animate-css";
-/* @import "../styles/colors.css"; */
+@plugin "@tailwindcss/typography";
+
 @custom-variant dark (&:is(.dark *));
 :root {
   --verified: rgba(1, 124, 32, 1);
@@ -53,7 +54,7 @@
   --chart-3: oklch(0.809 0.105 251.813);
   --chart-4: oklch(0.882 0.059 254.128);
   --chart-5: oklch(0.932 0.032 255.585);
-  --sidebar: oklch(0.967 0.001 286.375);
+  --sidebar: oklch(100% 0.00011 271.152);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.623 0.214 259.815);
   --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
@@ -229,7 +230,7 @@
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
+  --color-sidebar: var(--elevated-tertiary-background);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -264,7 +265,7 @@
   --color-muted-fg: var(--muted-fg);
   --color-overlay: var(--overlay);
   --color-overlay-fg: var(--overlay-fg);
-  --color-navbar: var(--navbar);
+  --color-navbar: var(--elevated-tertiary-background);
   --color-navbar-fg: var(--navbar-fg);
   --color-sidebar-fg: var(--sidebar-fg);
   --radius-4xl: var(--radius-4xl);

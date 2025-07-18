@@ -64,9 +64,9 @@ const Root = ({ children }: { children: ReactNode }) => {
   }, [pathname]);
 
   return createPortal(
-    <div role="modal" className="w-full bg-[#000000cc]  h-full fixed inset-0">
+    <div role="modal" className="w-full bg-elevated-tertiary-background/5 backdrop-blur-xs  h-full fixed inset-0">
       <div className="lg:p-5 max-w-xl mx-auto w-full h-full z-50 fixed inset-0">
-        <div className="bg-modal flex-col text-popover-foreground flex border border-modal-border w-full lg:rounded-lg overflow-hidden">
+        <div className="bg-modal/90 backdrop-blur-xs flex-col text-popover-foreground flex border border-modal-border w-full lg:rounded-lg overflow-hidden">
           {children}
         </div>
       </div>

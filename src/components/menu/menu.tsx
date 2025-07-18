@@ -1,8 +1,10 @@
 "use client";
 import { AnimatePresence } from "motion/react";
 import React, {
+  ComponentType,
   ReactNode,
   RefObject,
+  SVGProps,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -10,6 +12,7 @@ import React, {
 } from "react";
 import { motion } from "motion/react";
 import { createContext } from "react";
+import { cn } from "@/lib/utils";
 export const MenuContext = createContext<{
   toggle: () => void;
   isMenuOpen: boolean;
@@ -97,7 +100,14 @@ const Menu = (props: { children: ReactNode }) => {
       }
     }
     window.addEventListener("click", setOutside);
+
+    if (isMenuOpen) {
+      window.document.body.style.overflowY = "auto";
+    }
     return () => {
+      if (isMenuOpen) {
+        window.document.body.style.overflowY = "auto";
+      }
       window.removeEventListener("click", setOutside);
     };
   }, [isMenuOpen]);
@@ -117,18 +127,21 @@ const Menu = (props: { children: ReactNode }) => {
   );
 };
 
-const Trigger = ({ children }: { children: ReactNode }) => {
+const Trigger = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   const { toggle, triggerRef } = React.useContext(MenuContext);
   return (
-    <button
-      className="flex-1 flex items-center justify-center cursor-pointer hover:bg-hovered-background active:bg-pressed-background"
-      ref={triggerRef}
-      onClick={toggle}
-    >
+    <button className={cn(className)} ref={triggerRef} onClick={toggle}>
       {children}
     </button>
   );
 };
+
 const Body = ({ children }: { children: ReactNode }) => {
   const { position, showAbove, isMenuOpen, menuBodyRef } =
     React.useContext(MenuContext);
@@ -137,13 +150,21 @@ const Body = ({ children }: { children: ReactNode }) => {
     <AnimatePresence>
       {isMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: showAbove ? -8 : 8 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: showAbove ? -8 : 8 }}
+          initial={{ opacity: 0, scale: 0.95, transformOrigin: "bottom right" }}
+          exit={{ opacity: 0, scale: 0.95, transformOrigin: "bottom right" }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            transition: {
+              duration: 0.15,
+              ease: [0.42, 0, 0.58, 1],
+            },
+          }}
           transition={{ duration: 0.18, ease: "easeOut" }}
-          className="absolute py-2 shadow-panel-content bg-elevated-tertiary-background border border-primary-column-outline max-w-xs rounded-lg overflow-hidden"
+          className="absolute py-2 shadow-panel-content bg-elevated-tertiary-background/90 backdrop-blur-xs border border-primary-column-outline max-w-md rounded-lg overflow-hidden"
           ref={menuBodyRef}
           style={{
+            transformOrigin: "bottom right",
             top: `${position.top}px`,
             left: `${position.left}px`,
           }}
@@ -154,15 +175,29 @@ const Body = ({ children }: { children: ReactNode }) => {
     </AnimatePresence>
   );
 };
-
-const MenuItem = ({ children }: { children: ReactNode }) => {
+const MenuSeparator = () => {
+  return <div className="w-full h-[1px] bg-primary-column-outline"></div>;
+};
+const MenuItem = ({
+  children,
+  icon: Icon,
+}: {
+  children: ReactNode;
+  icon?: ComponentType<SVGProps<SVGSVGElement>>;
+}) => {
   return (
-    <button className="w-full text-sm active:bg-pressed-background hover:bg-hovered-background flex items-center justify-start space-x-2 cursor-pointer px-3 py-2">
-      {children}s
+    <button className="w-full text-xs group font-semibold gap-x-6 active:bg-pressed-background hover:bg-hovered-background flex items-center justify-start space-x-2 cursor-pointer px-4 py-2">
+      <span className="group-active:scale-95 transition-all duration-75">
+        {children}
+      </span>
+      {Icon && (
+        <Icon className="ml-auto w-4 h-4 group-active:scale-95 transition-all duration-75" />
+      )}
     </button>
   );
 };
 Menu.Item = MenuItem;
+Menu.Separator = MenuSeparator;
 Menu.Trigger = Trigger;
 Menu.Body = Body;
 export { Menu };

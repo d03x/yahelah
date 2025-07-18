@@ -2,7 +2,7 @@ import { Post } from "./Post";
 
 export default function Posts() {
   return (
-    <div className="lg:space-y-2  border-content-panel-border border-t lg:border-0 lg:mx-3">
+    <div className="border-content-panel-border border border-x-0 lg:border-x-1 rounded-lg overflow-hidden lg:mx-2">
       {[1, 2, 3, 4].map((item, index) => {
         return <Post key={index} />;
       })}

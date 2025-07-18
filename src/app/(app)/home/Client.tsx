@@ -1,7 +1,6 @@
 "use client";
 import * as Nav from "@components/navbar";
-import { IconHamburger, IconListBullets } from "@intentui/icons";
-import NavLink from "@/features/navbar/components/NavLink";
+import {  IconListBullets } from "@intentui/icons";
 import CreatePost from "@/features/create-post/components/CreatePost";
 import { Posts } from "@/features/posts";
 export default function Client() {

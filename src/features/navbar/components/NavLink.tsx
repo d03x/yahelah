@@ -19,7 +19,7 @@ export default function NavLink({
     <Link
       href={href}
       className={cn(
-        "flex w-auto py-2 px-3 hover:bg-secondary hover:text-secondary-foreground items-center  text-md justify-start",
+        "flex w-auto py-2 px-3 hover:bg-hovered-background active:bg-pressed-background transition-all active:scale-[0.98] hover:text-secondary-foreground items-center  text-md justify-start",
         className && className
       )}
       {...props}
