@@ -27,7 +27,7 @@ export const Post = () => {
         }}
       />
       <PostBase.Body>
-        <div className="text-sm prose">
+        <div className="text-sm text-secondary-foreground prose">
           <p>{faker.word.words(Math.random() * 100)}</p>
         </div>
         <PostBase.PostTypeAudio
