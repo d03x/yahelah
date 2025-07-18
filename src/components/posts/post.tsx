@@ -119,7 +119,7 @@ const Root = (props: WithChildren) => {
   return (
     <div
       className={cn(
-        "overflow-hidden hover:bg-hovered-background/5 cursor-pointer transition-all duration-75 border-content-panel-border border-b   bg-content-panel"
+        "overflow-hidden hover:bg-hovered-background/5 select-none cursor-pointer transition-all duration-75 border-content-panel-border border-b   bg-content-panel"
       )}
     >
       {props.children}

@@ -1,3 +1,4 @@
+import { MobileNav } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
 import ErrorBoundaryProvider from "@/provider/ErrorBoundaryProvider";
 import { ReactNode } from "react";
@@ -18,6 +19,7 @@ const AppLayout = ({
           <ErrorBoundaryProvider>
             <main>{children}</main>
             {modal}
+            <MobileNav />
           </ErrorBoundaryProvider>
         </div>
       </div>

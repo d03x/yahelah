@@ -25,9 +25,9 @@ export default function NavLink({
       {...props}
     >
       {Icon && (
-        <Icon className="w-5 h-5 mr-2 aspect-square group-hover:scale-110" />
+        <Icon className="w-5 h-5 lg:mr-2 aspect-square group-hover:scale-110" />
       )}
-      <span className="text-text">{children}</span>
+      <span className="text-text hidden lg:inline">{children}</span>
     </Link>
   );
 }
