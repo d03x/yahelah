@@ -14,7 +14,7 @@ export function Root({
 }) {
   if (withAside) {
     return (
-      <div className="lg:grid lg:grid-cols-[1fr_var(--aside-width)]">
+      <div className="lg:grid relative lg:grid-cols-[1fr_var(--aside-width)]">
         {children}
       </div>
     );

@@ -107,7 +107,7 @@ const Action = ({
 
 const Footer = (props: { children: ReactNode }) => {
   return (
-    <div className="flex py-2 pr-2 ml-11">
+    <div className="flex  py-2 pr-2 ml-11">
       <div className="flex-1">
         <div className="flex items-center">{props.children}</div>
       </div>
@@ -119,7 +119,7 @@ const Root = (props: WithChildren) => {
   return (
     <div
       className={cn(
-        "overflow-hidden hover:bg-hovered-background/5 select-none cursor-pointer transition-all duration-75 border-content-panel-border border-b   bg-content-panel"
+        "overflow-hidden hover:bg-hovered-background select-none cursor-pointer transition-all duration-75 border-content-panel-border border-b   bg-content-panel"
       )}
     >
       {props.children}

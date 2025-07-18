@@ -3,11 +3,14 @@ import { Post as PostBase } from "@components/index";
 import { faker } from "@faker-js/faker";
 import {
   IconCallOutgoing,
+  IconChartAnalytics,
   IconCircleInfo,
+  IconCodeLines,
   IconDotsHorizontal,
   IconHeart,
   IconLink,
   IconMessageDots,
+  IconMute,
   IconPersonPasskey,
   IconPersonRemove,
   IconRepeat2,
@@ -24,7 +27,7 @@ export const Post = () => {
         }}
       />
       <PostBase.Body>
-        <div className="text-sm text-foreground prose">
+        <div className="text-sm prose">
           <p>{faker.word.words(Math.random() * 100)}</p>
         </div>
       </PostBase.Body>
@@ -53,12 +56,24 @@ export const Post = () => {
             <Menu.Item icon={IconPersonPasskey}>
               <span>Follow</span>
             </Menu.Item>
+            <Menu.Item icon={IconPersonRemove}>
+              <span>Unfollow @hendy</span>
+            </Menu.Item>
+             <Menu.Item icon={IconMute}>
+              <span>Mute Postingan</span>
+            </Menu.Item>
+             <Menu.Item icon={IconChartAnalytics}>
+              <span>Lihat Satistik Postingan</span>
+            </Menu.Item>
             <Menu.Separator />
             <Menu.Item icon={IconPersonRemove}>
               <span>Block This User</span>
             </Menu.Item>
             <Menu.Item icon={IconLink}>
               <span>Copy Link</span>
+            </Menu.Item>
+             <Menu.Item icon={IconCodeLines}>
+              <span>Embed Postingan</span>
             </Menu.Item>
             <Menu.Separator />
             <Menu.Item icon={IconCallOutgoing}>

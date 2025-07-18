@@ -13,6 +13,7 @@ import React, {
 import { motion } from "motion/react";
 import { createContext } from "react";
 import { cn } from "@/lib/utils";
+import { createPortal } from "react-dom";
 export const MenuContext = createContext<{
   toggle: () => void;
   isMenuOpen: boolean;
@@ -57,6 +58,7 @@ const Menu = (props: { children: ReactNode }) => {
       if (triggerRef.current && menuBodyRef.current) {
         const triggerButton = triggerRef.current;
         const buttonRect = triggerButton.getBoundingClientRect();
+        console.log(buttonRect.right);
 
         const menuBody = menuBodyRef.current;
 
@@ -69,8 +71,8 @@ const Menu = (props: { children: ReactNode }) => {
         const placeAbove = spaceAbove > menuHeight + 16;
         setShowAbove(placeAbove);
         const top = showAbove
-          ? buttonRect.top + window.scrollY - menuHeight - 8
-          : buttonRect.bottom + window.scrollY + 8;
+          ? buttonRect.top + window.scrollY - menuHeight - 2
+          : buttonRect.bottom + window.scrollY + 1;
         const left = buttonRect.right + window.scrollX - menuWidth - 5;
         setPosition({
           top,
@@ -78,14 +80,20 @@ const Menu = (props: { children: ReactNode }) => {
         });
       }
     };
+    let rafId: number;
 
-    window.addEventListener("resize", setMenuPosition);
-    window.addEventListener("scroll", setMenuPosition);
-    const id = requestAnimationFrame(setMenuPosition);
+    const onscrollOrResize = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(setMenuPosition);
+    };
+
+    window.addEventListener("resize", onscrollOrResize);
+    window.addEventListener("scroll", onscrollOrResize);
+    rafId = requestAnimationFrame(setMenuPosition);
     return () => {
-      cancelAnimationFrame(id);
-      window.removeEventListener("resize", setMenuPosition);
-      window.removeEventListener("scroll", setMenuPosition);
+      window.removeEventListener("resize", onscrollOrResize);
+      window.removeEventListener("scroll", onscrollOrResize);
+      cancelAnimationFrame(rafId);
     };
   }, [triggerRef, isMenuOpen]);
   useEffect(() => {
@@ -102,7 +110,7 @@ const Menu = (props: { children: ReactNode }) => {
     window.addEventListener("click", setOutside);
 
     if (isMenuOpen) {
-      window.document.body.style.overflowY = "auto";
+      window.document.body.style.overflowY = "hidden";
     }
     return () => {
       if (isMenuOpen) {
@@ -136,22 +144,26 @@ const Trigger = ({
 }) => {
   const { toggle, triggerRef } = React.useContext(MenuContext);
   return (
-    <button className={cn(className)} ref={triggerRef} onClick={toggle}>
+    <button
+      className={cn(className, "cursor-pointer")}
+      ref={triggerRef}
+      onClick={toggle}
+    >
       {children}
     </button>
   );
 };
 
 const Body = ({ children }: { children: ReactNode }) => {
-  const { position, showAbove, isMenuOpen, menuBodyRef } =
+  const { position, triggerRef, showAbove, isMenuOpen, menuBodyRef } =
     React.useContext(MenuContext);
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, transformOrigin: "bottom right" }}
-          exit={{ opacity: 0, scale: 0.95, transformOrigin: "bottom right" }}
+          initial={{ opacity: 0, scale: 0.95, transformOrigin: showAbove ? "bottom right"  : "top right" }}
+          exit={{ opacity: 0, scale: 0.95, transformOrigin: showAbove ? "top right"  : "bottom right" }}
           animate={{
             opacity: 1,
             scale: 1,
@@ -161,10 +173,10 @@ const Body = ({ children }: { children: ReactNode }) => {
             },
           }}
           transition={{ duration: 0.18, ease: "easeOut" }}
-          className="absolute py-2 shadow-panel-content bg-elevated-tertiary-background/90 backdrop-blur-xs border border-primary-column-outline max-w-md rounded-lg overflow-hidden"
+          className="absolute z-10 py-2 shadow-panel-content bg-elevated-tertiary-background/90 backdrop-blur-xs border border-primary-column-outline max-w-md rounded-lg"
           ref={menuBodyRef}
           style={{
-            transformOrigin: "bottom right",
+            transformOrigin: showAbove ?  "bottom right" : "top right",
             top: `${position.top}px`,
             left: `${position.left}px`,
           }}
@@ -172,7 +184,8 @@ const Body = ({ children }: { children: ReactNode }) => {
           <div className="flex flex-col">{children}</div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 const MenuSeparator = () => {
@@ -191,7 +204,7 @@ const MenuItem = ({
         {children}
       </span>
       {Icon && (
-        <Icon className="ml-auto w-4 h-4 group-active:scale-95 transition-all duration-75" />
+        <Icon className="ml-auto w-5 h-5 aspect-square group-active:scale-95 transition-all duration-75" />
       )}
     </button>
   );
